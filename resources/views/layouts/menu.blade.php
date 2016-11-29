@@ -1,2 +1,2 @@
 <center>
-<a href="{{ url('/users') }}">users</a>
+<h3><a href="{{ url('/users') }}">users</a>
