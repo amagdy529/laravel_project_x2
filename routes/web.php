@@ -32,3 +32,8 @@ Route::resource("tweets","TweetController");
 Route::resource('tweets', 'tweetController');
 
 Route::resource('users', 'UserController');
+
+
+
+
+Route::resource('visits', 'visitController');

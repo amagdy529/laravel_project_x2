@@ -1,33 +1,33 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
-class CreatetweetsTable extends Migration
-{
+class CreateTweets2Table extends Migration {
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('tweets', function (Blueprint $table) {
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('tweets', function(Blueprint $table) {
             $table->increments('id');
+            $table->string('title')->default('Tweet #1');
             $table->text('body');
             $table->timestamps();
-            $table->softDeletes();
         });
-    }
+	}
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::drop('tweets');
-    }
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::drop('tweets');
+	}
+
 }
