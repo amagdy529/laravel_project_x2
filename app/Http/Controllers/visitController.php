@@ -11,6 +11,9 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
+
+use App\User ;
+
 class visitController extends AppBaseController
 {
     /** @var  visitRepository */
@@ -31,9 +34,23 @@ class visitController extends AppBaseController
     {
         $this->visitRepository->pushCriteria(new RequestCriteria($request));
         $visits = $this->visitRepository->all();
-
+        //print_r($visits);
+        foreach ($visits as $key => $visit) {
+          # code...
+          $patient_id= $visit['patient_id'];
+          $user = User::findOrFail($patient_id);
+          //print_r($user['name']);
+          $patients_name_arr = array( 'name' => $user['name']);
+          //$visits_arr = array('patient_name '=> $user['name']);
+          print_r($patients_name_arr);
+        }
+        print_r($patients_name_arr);
+        //$visits_arr = array($visits);
+        //print_r($visits_arr);
         return view('visits.index')
-            ->with('visits', $visits);
+            ->with('visits', $visits)
+            //->with('visits_arr', $visits_arr)
+            ->with('patients_names', $patients_name_arr);
     }
 
     /**
@@ -43,7 +60,8 @@ class visitController extends AppBaseController
      */
     public function create()
     {
-        return view('visits.create');
+        $users = User::orderBy('id', 'desc')->paginate(10);
+        return view('visits.create', compact('users'));
     }
 
     /**

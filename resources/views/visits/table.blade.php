@@ -9,13 +9,17 @@
         <th colspan="3">Action</th>
     </thead>
     <tbody>
+
     @foreach($visits as $visit)
         <tr>
             <td>{!! $visit->date !!}</td>
             <td>{!! $visit->time !!}</td>
             <td>{!! $visit->complaint !!}</td>
             <td>{!! $visit->diagnoses !!}</td>
-            <td>{!! $visit->patient_id !!}</td>
+            @foreach($patients_names as $name)
+            <?php echo  print_r($patients_names); ?>
+              <td>{!! $name  !!}</td>
+            @endforeach
             <td>{!! $visit->visit_status !!}</td>
             <td>
                 {!! Form::open(['route' => ['visits.destroy', $visit->id], 'method' => 'delete']) !!}
