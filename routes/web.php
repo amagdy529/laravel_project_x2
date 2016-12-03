@@ -37,3 +37,4 @@ Route::resource('users', 'UserController');
 
 
 Route::resource('visits', 'visitController');
+
